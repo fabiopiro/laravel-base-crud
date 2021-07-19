@@ -4,7 +4,7 @@
     <h1>Elenco Comics</h1>
 
     {{-- @dump($comics) --}}
-    <table class="mt-5 table table-striped">
+    <table class="mt-4 table table-striped">
         <thead>
             <tr>
                 <th>ID</th>
@@ -18,7 +18,9 @@
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->title }}</td>
-                    <td>show</td>
+                    <td>
+                        <a href="{{ route('comics.show', $item) }}" class="btn btn-primary btn-succes">SHOW</a>
+                    </td>
                     <td>edit</td>
                     <td>delete</td>
                 </tr>

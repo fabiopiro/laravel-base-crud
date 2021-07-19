@@ -53,9 +53,37 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Comic $comic)
+    {   
+        // OPZIONI
+        // 1: find e abort
+        // $beer = Beer::find($id);
+        // if($beer) {
+        //     return view("beers.show", compact('beer'));
+        // }
+        // abort(404, "Not Found");
+
+        // 2: findOrFail
+        // $beer = Beer::findOrFail($id);
+        // return view("beers.show", compact('beer'));
+
+        // 3: ricerca per slug
+        // $beer = Beer::where('slug', $slug)->firstOrFail();
+
+        // 3b: ricerca per slug senza gestione eccezione
+        // $beer = Beer::where('slug', $slug)->first();
+        // if($beer) {
+        //     return view("beers.show", compact('beer'));
+        // }
+        // abort(404, "Not Found");
+
+        // 4: dependency injection, Laravel per noi sta facendo:
+        // $beer = Beer::findOrFail($id);
+        // OPZIONI
+
+
+        //SHOW SHOW SHOW
+        return view('comics.show' , compact('comic'));
     }
 
     /**
