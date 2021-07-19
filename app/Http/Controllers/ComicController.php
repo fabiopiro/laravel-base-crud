@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// IMPORTO IL MODEL!!!
+use App\Comic;
+// IMPORTO IL MODEL!!!
+
 class ComicController extends Controller
 {
     /**
@@ -13,7 +17,13 @@ class ComicController extends Controller
      */
     public function index()
     {
-        //
+        // INDEX INDEX INDEX
+        // index.blade.php
+
+        // COMICS!!!
+        // $comics = Comic::all();
+        $comics = Comic::paginate(4);
+        return view('comics.index', compact('comics'));
     }
 
     /**
