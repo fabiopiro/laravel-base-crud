@@ -33,7 +33,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('comics.create');
     }
 
     /**
@@ -45,6 +45,37 @@ class ComicController extends Controller
     public function store(Request $request)
     {
         //
+        /*
+        $data = $request->all();
+        dd($data);
+
+        To Do: validazione
+
+
+        1) creo nuova istanza
+
+        $comic = new Comic();
+
+        2) assegnazioni valori - opzione 1
+        $comic->title = $data['title'];
+        ...
+        ...
+        x tutti i campi
+
+        2) assegnazioni valori - opzione 2
+        NEL MODEL SETTIAMO IL FILLABLE
+        
+        MASS ASSIGNMENT
+        $comic->fill($data);
+        !x utilizzare il fill()
+        serve aggiungere $fillable al Model
+
+
+        3)salvataggio istanza
+        $comic->save();
+
+        return redirect()->route('comics.show', $beer->id);
+        */
     }
 
     /**
@@ -92,9 +123,11 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comic $comic)
+    // public function edit($id)
     {
-        //
+        // $comic = Comic::findOrFail($id);
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -104,9 +137,14 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comic $comic)
+    // public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        // To Do: Validazione
+        $comic->update($data);
+
+        return redirect()->route('comics.show', $comic->id);
     }
 
     /**

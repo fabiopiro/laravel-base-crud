@@ -19,6 +19,11 @@
                 <a class="nav-link" href="{{ route('comics.index') }}">Comics <span class="sr-only">(current)</span></a>
             </li>
 
+            {{-- NUOVO NUOVO NUVO --}}
+            {{-- Gestione Active --}}
+            <li class="nav-item {{ Route::currentRouteName() == 'comics.create' ? 'active' : '' }}">
+              <a class="nav-link" href="{{ route('comics.create') }}">New Comic <span class="sr-only">(current)</span></a>
+            </li>
           </ul>
         </div>
       </nav>

@@ -1,7 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1>{{ $comic->title }}</h1>
+    <h1>{{ $comic->title }}
+        <a class="btn btn-primary" href="{{ route('comics.edit', $comic->id) }}">Modifica</a>
+    </h1>
 
     <div class="row my-5">
         <div class="col-3">

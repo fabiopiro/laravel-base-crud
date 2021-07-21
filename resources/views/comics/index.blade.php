@@ -19,9 +19,18 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->title }}</td>
                     <td>
-                        <a href="{{ route('comics.show', $item) }}" class="btn btn-primary btn-succes">SHOW</a>
+                        <a href="{{ route('comics.show', $item->id) }}" class="btn btn-primary btn-succes">SHOW</a>
                     </td>
-                    <td>edit</td>
+                    <td>
+                        <a href="{{ route('comics.edit', $item->id) }}" class="btn btn-primary btn-succes">EDIT</a>
+                    </td>
+                    {{--  
+                    <td>
+                        <a href="{{ route('comics.edit'), $item->id }}" class="btn btn-primary">
+                            EDIT
+                        </a>
+                        </td>
+                    --}}
                     <td>delete</td>
                 </tr>
             @endforeach
