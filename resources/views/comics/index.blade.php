@@ -3,6 +3,12 @@
 @section('content')
     <h1>Elenco Comics</h1>
 
+    @if (session('deleted'))
+        <div class="alert alert-success">
+            {{ session('deleted')}}
+        </div>
+    @endif
+
     {{-- @dump($comics) --}}
     <table class="mt-4 table table-striped">
         <thead>
@@ -24,14 +30,13 @@
                     <td>
                         <a href="{{ route('comics.edit', $item->id) }}" class="btn btn-primary btn-succes">EDIT</a>
                     </td>
-                    {{--  
                     <td>
-                        <a href="{{ route('comics.edit'), $item->id }}" class="btn btn-primary">
-                            EDIT
-                        </a>
-                        </td>
-                    --}}
-                    <td>delete</td>
+                        <form action="{{ route('comics.destroy', $item->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" class="btn btn-danger" value="DELETE">
+                        </form> 
+                    </td>
                 </tr>
             @endforeach
         </tbody>

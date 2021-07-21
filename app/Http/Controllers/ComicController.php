@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 // IMPORTO IL MODEL!!!
 use App\Comic;
 // IMPORTO IL MODEL!!!
+use Illuminate\Support\Str;
 
 class ComicController extends Controller
 {
@@ -44,38 +45,30 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        /*
+        //array associativo
         $data = $request->all();
-        dd($data);
 
-        To Do: validazione
+        // To Do: validazione
 
-
-        1) creo nuova istanza
-
+        // 1) creo nuova istanza
         $comic = new Comic();
 
+        /*
         2) assegnazioni valori - opzione 1
+
         $comic->title = $data['title'];
         ...
         ...
-        x tutti i campi
+        */
 
-        2) assegnazioni valori - opzione 2
-        NEL MODEL SETTIAMO IL FILLABLE
-        
-        MASS ASSIGNMENT
+        // 2) assegnazioni valori - opzione 2
+        // Fillable Nel Model!!! -> Mass Assignment    
         $comic->fill($data);
-        !x utilizzare il fill()
-        serve aggiungere $fillable al Model
 
-
-        3)salvataggio istanza
+        // 3)salvataggio istanza
         $comic->save();
 
-        return redirect()->route('comics.show', $beer->id);
-        */
+        return redirect()->route('comics.show', $comic->id);
     }
 
     /**
@@ -153,8 +146,12 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+
+        return redirect()
+        ->route('comics.index')
+        ->with('deleted', 'Comic ' . $comic->title . " DELETED!");
     }
 }
