@@ -7,7 +7,7 @@
     </h1>
 
     {{-- EDIT FORM --}}
-    <form method="PATCH" action="{{ route('comics.update', $comic->id) }}">
+    <form method="POST" action="{{ route('comics.update', $comic->id) }}">
         @csrf
         @method('PATCH')
 
